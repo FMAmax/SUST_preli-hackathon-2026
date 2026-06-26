@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parseAmounts, detectLanguage, findDuplicate, priorTransferCount } from "@/lib/extract";
+import { parseAmounts, detectLanguage, findDuplicate, priorTransferCount, mentions, KW } from "@/lib/extract";
 import type { Transaction } from "@/lib/schema";
 
 const tx = (o: Partial<Transaction>): Transaction => ({
@@ -31,5 +31,10 @@ describe("extract", () => {
       tx({ type: "transfer", counterparty: "Q" }),
     ];
     expect(priorTransferCount(h, "P")).toBe(2);
+  });
+  it("mentions matches English and Bangla keywords, rejects misses", () => {
+    expect(mentions("I paid twice", KW.duplicate.en, KW.duplicate.bn)).toBe(true);
+    expect(mentions("আমি দুইবার পেমেন্ট করেছি", KW.duplicate.en, KW.duplicate.bn)).toBe(true);
+    expect(mentions("everything is fine", KW.duplicate.en, KW.duplicate.bn)).toBe(false);
   });
 });

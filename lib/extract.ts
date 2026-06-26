@@ -21,7 +21,7 @@ const BANGLA_DIGITS: Record<string, string> = { "০": "0", "১": "1", "২": "
 export function parseAmounts(text: string): number[] {
   const normalized = text.replace(/[০-৯]/g, (d) => BANGLA_DIGITS[d] ?? d);
   const out: number[] = [];
-  for (const m of normalized.matchAll(/\d[\d,]*/g)) {
+  for (const m of normalized.matchAll(/\d[\d,]*\d|\d/g)) {
     const n = Number(m[0].replace(/,/g, ""));
     if (Number.isFinite(n) && n > 0) out.push(n);
   }
