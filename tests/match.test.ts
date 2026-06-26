@@ -29,9 +29,17 @@ describe("matchEvidence", () => {
     const h = [tx({ transaction_id: "A", amount: 1000, counterparty: "P1" }), tx({ transaction_id: "B", amount: 1000, counterparty: "P2" }), tx({ transaction_id: "C", amount: 1000, counterparty: "P1", status: "failed" })];
     const r = matchEvidence(reqWith("sent 1000 to my brother", h), "wrong_transfer");
     expect(r).toMatchObject({ relevant_transaction_id: null, evidence_verdict: "insufficient_data" });
+    expect(r.signals).toContain("ambiguous_match");
   });
   it("duplicate -> later txn, consistent", () => {
     const h = [tx({ transaction_id: "A", type: "payment", amount: 850, counterparty: "BILLER", timestamp: "2026-04-14T08:15:30Z" }), tx({ transaction_id: "B", type: "payment", amount: 850, counterparty: "BILLER", timestamp: "2026-04-14T08:15:42Z" })];
     expect(matchEvidence(reqWith("charged twice 850", h), "duplicate_payment")).toMatchObject({ relevant_transaction_id: "B", evidence_verdict: "consistent" });
+  });
+  it("duplicate -> later txn regardless of array order", () => {
+    const h = [
+      tx({ transaction_id: "B", type: "payment", amount: 850, counterparty: "BILLER", timestamp: "2026-04-14T08:15:42Z" }),
+      tx({ transaction_id: "A", type: "payment", amount: 850, counterparty: "BILLER", timestamp: "2026-04-14T08:15:30Z" }),
+    ];
+    expect(matchEvidence(reqWith("charged twice 850", h), "duplicate_payment").relevant_transaction_id).toBe("B");
   });
 });
