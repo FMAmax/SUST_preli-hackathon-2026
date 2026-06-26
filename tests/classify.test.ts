@@ -42,4 +42,22 @@ describe("classifyCaseType", () => {
   it("card theft / fraud report -> phishing_or_social_engineering", () => {
     expect(classifyCaseType(req({ complaint: "Someone stole my card and made transactions, please help" }))).toBe("phishing_or_social_engineering");
   });
+  it("Bangla phishing: কেউ ওটিপি চেয়েছে -> phishing", () => {
+    expect(classifyCaseType(req({ complaint: "কেউ ফোনে বলেছে bKash থেকে, আমার ওটিপি দিতে হবে না হলে অ্যাকাউন্ট ব্লক হবে" }))).toBe("phishing_or_social_engineering");
+  });
+  it("English account-takeover -> phishing", () => {
+    expect(classifyCaseType(req({ complaint: "My account got hacked, I cannot log in anymore, please help" }))).toBe("phishing_or_social_engineering");
+  });
+  it("Bangla account-takeover -> phishing", () => {
+    expect(classifyCaseType(req({ complaint: "আমার অ্যাকাউন্ট হ্যাক হয়ে গেছে, লগইন করতে পারছি না" }))).toBe("phishing_or_social_engineering");
+  });
+  it("English 'compromised' -> phishing", () => {
+    expect(classifyCaseType(req({ complaint: "My card was compromised and money was taken out" }))).toBe("phishing_or_social_engineering");
+  });
+  it("Bangla 'চুরি' (theft only) -> phishing", () => {
+    expect(classifyCaseType(req({ complaint: "আমার মোবাইল থেকে ২০০০০ টাকা চুরি হয়ে গেছে" }))).toBe("phishing_or_social_engineering");
+  });
+  it("English 'account taken over' -> phishing", () => {
+    expect(classifyCaseType(req({ complaint: "Someone has taken over my account, I cannot access it" }))).toBe("phishing_or_social_engineering");
+  });
 });
