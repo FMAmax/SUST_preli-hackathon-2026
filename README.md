@@ -11,18 +11,18 @@ A bilingual (English + Bangla) finance support-triage API. Accepts a support tic
 
 | Method | Path | Purpose |
 | --- | --- | --- |
-| `GET` | `/api/health` | Liveness check. Returns `{"status":"ok"}`. |
-| `POST` | `/api/analyze-ticket` | Main triage endpoint. Accepts the JSON ticket from the Problem Statement, returns the required structured verdict. |
+| `GET` | `/health` | Liveness check. Returns `{"status":"ok"}`. |
+| `POST` | `/analyze-ticket` | Main triage endpoint. Accepts the JSON ticket from the Problem Statement, returns the required structured verdict. |
 
 ### Quick smoke test
 
 ```bash
 # Health
-curl https://sust-preli-hackathon-2026.vercel.app/api/health
+curl https://sust-preli-hackathon-2026.vercel.app/health
 # -> {"status":"ok"}
 
 # Triage
-curl -X POST https://sust-preli-hackathon-2026.vercel.app/api/analyze-ticket \
+curl -X POST https://sust-preli-hackathon-2026.vercel.app/analyze-ticket \
   -H 'content-type: application/json' \
   -d @samples/request.json
 ```
@@ -49,7 +49,7 @@ cp .env.example .env.local
 npm run dev                 # http://localhost:3000
 
 # 4. Verify
-curl localhost:3000/api/health
+curl localhost:3000/health
 ```
 
 ### Environment variables
@@ -123,8 +123,8 @@ If the LLM output fails any check, it is discarded and replaced with the safe te
 ## 6. Repository layout
 
 ```
-app/api/health/route.ts           # GET /api/health
-app/api/analyze-ticket/route.ts   # POST /api/analyze-ticket
+app/health/route.ts               # GET /health
+app/analyze-ticket/route.ts       # POST /analyze-ticket
 lib/schema.ts                     # Zod request/response schemas
 lib/extract.ts                    # Bilingual keyword sets, amount/date parsers
 lib/classify.ts                   # Case-type and severity classifier

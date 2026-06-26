@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { POST } from "@/app/api/analyze-ticket/route";
+import { POST } from "@/app/analyze-ticket/route";
 
-const post = (body: string) => POST(new Request("http://localhost/api/analyze-ticket", { method: "POST", body, headers: { "content-type": "application/json" } }));
+const post = (body: string) => POST(new Request("http://localhost/analyze-ticket", { method: "POST", body, headers: { "content-type": "application/json" } }));
 
 describe("POST /analyze-ticket", () => {
   beforeEach(() => { delete process.env.GEMINI_API_KEY; });
