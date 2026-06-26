@@ -19,7 +19,7 @@ export function classifyCaseType(req: AnalyzeRequest): CaseType {
   if (mentions(c, KW.agent.en, KW.agent.bn) && (hasType(h, "cash_in") || mentions(c, KW.notReceived.en, KW.notReceived.bn))) return "agent_cash_in_issue";
   if (mentions(c, KW.settlement.en, KW.settlement.bn) && (req.user_type === "merchant" || hasType(h, "settlement"))) return "merchant_settlement_delay";
   if (mentions(c, KW.failed.en, KW.failed.bn) && (mentions(c, KW.deduct.en, KW.deduct.bn) || hasStatus(h, "failed"))) return "payment_failed";
-  if (mentions(c, KW.wrong.en, KW.wrong.bn)) return "wrong_transfer";
+  if (mentions(c, KW.wrong.en, KW.wrong.bn) && (hasType(h, "transfer") || mentions(c, KW.notReceived.en, KW.notReceived.bn))) return "wrong_transfer";
   if (mentions(c, KW.refund.en, KW.refund.bn)) return "refund_request";
   return "other";
 }

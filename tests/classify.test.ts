@@ -30,4 +30,7 @@ describe("classifyCaseType", () => {
   it("vague -> other (not wrong_transfer)", () => {
     expect(classifyCaseType(req({ complaint: "Something is wrong with my money. Please check." }))).toBe("other");
   });
+  it("merchant settlement delay", () => {
+    expect(classifyCaseType(req({ complaint: "My settlement of 15000 has not been received", user_type: "merchant", transaction_history: [tx({ type: "settlement", amount: 15000 })] }))).toBe("merchant_settlement_delay");
+  });
 });
