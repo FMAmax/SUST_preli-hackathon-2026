@@ -16,10 +16,10 @@ export const KW = {
   refund: { en: ["refund", "money back", "return my money", "want my money", "changed my mind", "don't want", "do not want"], bn: ["ফেরত", "রিফান্ড", "টাকা ফেরত"] },
 } as const;
 
-const BANGLA_DIGITS: Record<string, string> = { "०": "0", "१": "1", "२": "2", "३": "3", "४": "4", "५": "5", "६": "6", "७": "7", "८": "8", "९": "9" };
+const BANGLA_DIGITS: Record<string, string> = { "০": "0", "১": "1", "২": "2", "৩": "3", "৪": "4", "৫": "5", "৬": "6", "৭": "7", "৮": "8", "৯": "9" };
 
 export function parseAmounts(text: string): number[] {
-  const normalized = text.replace(/[०-९]/g, (d) => BANGLA_DIGITS[d] ?? d);
+  const normalized = text.replace(/[০-৯]/g, (d) => BANGLA_DIGITS[d] ?? d);
   const out: number[] = [];
   for (const m of normalized.matchAll(/\d[\d,]*/g)) {
     const n = Number(m[0].replace(/,/g, ""));
