@@ -27,6 +27,8 @@ secrets.json
 
 # --- SDD scratch (briefs, reports, review packages, progress ledger) ---
 .superpowers/
+# Session-scrap handoff briefs (internal AI-agent notes, not judge-facing)
+HANDOFF.md
 
 # --- Node / Next.js / Vercel -------------------------------------------
 node_modules/
