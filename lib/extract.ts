@@ -5,7 +5,7 @@ import type { Lang } from "./types";
 export const KW = {
   credWords: { en: ["otp", "pin", "password", "card number", "cvv", "full card"], bn: ["ওটিপি", "পিন", "পাসওয়ার্ড"] },
   socialCtx: { en: ["someone", "called", "calling", "caller", "sms", "message", "claim", "from bkash", "share", "asked", "blocked", "scam", "fraud", "suspicious"], bn: ["কেউ", "ফোন", "এসএমএস", "শেয়ার", "প্রতারণা", "সন্দেহ"] },
-  phishingStrong: { en: ["scam", "phishing", "fraud", "suspicious"], bn: ["প্রতারণা", "সন্দেহজনক"] },
+  phishingStrong: { en: ["scam", "phishing", "fraud", "suspicious", "stole", "stolen", "theft", "hacked", "compromised"], bn: ["প্রতারণা", "সন্দেহজনক", "চুরি", "চুরি করেছে", "হারিয়ে", "হ্যাক"] },
   duplicate: { en: ["twice", "two times", "double", "duplicate", "again", "second time", "charged twice", "deducted twice"], bn: ["দুইবার", "দুবার", "ডবল"] },
   agent: { en: ["agent", "cash in", "cash-in", "cashin", "deposit"], bn: ["এজেন্ট", "ক্যাশ ইন", "ক্যাশইন", "জমা"] },
   notReceived: { en: ["not", "didn't", "did not", "haven't", "balance", "not reflected"], bn: ["আসেনি", "পাইনি", "দেখছি না"] },

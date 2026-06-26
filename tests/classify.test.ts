@@ -33,4 +33,13 @@ describe("classifyCaseType", () => {
   it("merchant settlement delay", () => {
     expect(classifyCaseType(req({ complaint: "My settlement of 15000 has not been received", user_type: "merchant", transaction_history: [tx({ type: "settlement", amount: 15000 })] }))).toBe("merchant_settlement_delay");
   });
+  it("wrong_transfer on Bangla 'ভুলে পাঠিয়েছি' + transfer history", () => {
+    expect(classifyCaseType(req({
+      complaint: "আমি ভুলে ৫০০০ টাকা পাঠিয়েছি ভুল নম্বরে, এখন ফেরত চাই",
+      transaction_history: [tx({ type: "transfer", amount: 5000 })],
+    }))).toBe("wrong_transfer");
+  });
+  it("card theft / fraud report -> phishing_or_social_engineering", () => {
+    expect(classifyCaseType(req({ complaint: "Someone stole my card and made transactions, please help" }))).toBe("phishing_or_social_engineering");
+  });
 });
