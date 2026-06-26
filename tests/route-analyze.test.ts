@@ -4,7 +4,7 @@ import { POST } from "@/app/api/analyze-ticket/route";
 const post = (body: string) => POST(new Request("http://localhost/api/analyze-ticket", { method: "POST", body, headers: { "content-type": "application/json" } }));
 
 describe("POST /analyze-ticket", () => {
-  beforeEach(() => { delete process.env.ANTHROPIC_API_KEY; });
+  beforeEach(() => { delete process.env.GEMINI_API_KEY; });
 
   it("400 on invalid JSON", async () => { expect((await post("not json")).status).toBe(400); });
   it("400 on missing required field", async () => { expect((await post(JSON.stringify({ complaint: "hi" }))).status).toBe(400); });

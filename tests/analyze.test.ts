@@ -3,7 +3,7 @@ import { analyze } from "@/lib/analyze";
 import { AnalyzeResponseSchema } from "@/lib/schema";
 
 describe("analyze (template floor, no API key)", () => {
-  beforeEach(() => { delete process.env.ANTHROPIC_API_KEY; });
+  beforeEach(() => { delete process.env.GEMINI_API_KEY; });
 
   it("produces a schema-valid response and echoes ticket_id", async () => {
     const out = await analyze({ ticket_id: "TKT-001", complaint: "I sent 5000 to a wrong number", transaction_history: [{ transaction_id: "TXN-9101", timestamp: "2026-04-14T14:08:22Z", type: "transfer", amount: 5000, counterparty: "+8801719876543", status: "completed" }] });

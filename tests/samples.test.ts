@@ -6,7 +6,7 @@ import samples from "@/SUST_Preli_Sample_Cases.json";
 const RANK = { low: 0, medium: 1, high: 2, critical: 3 } as const;
 
 describe("sample pack functional equivalence", () => {
-  beforeEach(() => { delete process.env.ANTHROPIC_API_KEY; });
+  beforeEach(() => { delete process.env.GEMINI_API_KEY; });
 
   for (const c of (samples as any).cases) {
     it(`${c.id}: ${c.label}`, async () => {

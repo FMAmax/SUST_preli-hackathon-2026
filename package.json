@@ -11,7 +11,7 @@
     "gen:sample": "tsx scripts/gen-sample-output.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.30.1",
+    "@google/generative-ai": "^0.24.1",
     "next": "^14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
