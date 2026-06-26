@@ -1,0 +1,53 @@
+# .gitignore
+# Preventing secret leaks is priority #1 for this submission.
+# Committing an API key or token is a direct rubric penalty and a disqualifier risk.
+# Real secrets live ONLY in Vercel env vars (deployed) or the private submission field.
+
+# --- Secrets & environment ---------------------------------------------
+.env
+.env.*
+# keep the names-only template tracked (the next line un-ignores it):
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+credentials.json
+secrets.json
+.secrets/
+
+# --- Local tooling / AI-agent state (these can hold tokens) ------------
+# .puku/config.json contains a "puku.embeddings.token" field
+.puku/
+# local Claude Code state
+.claude/
+.vscode/
+.idea/
+
+# --- Node / Next.js / Vercel -------------------------------------------
+node_modules/
+.next/
+out/
+build/
+dist/
+.vercel/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# --- Logs & debug ------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Tests / coverage --------------------------------------------------
+coverage/
+.nyc_output/
+
+# --- OS / editor cruft -------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
