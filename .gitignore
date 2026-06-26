@@ -25,6 +25,9 @@ secrets.json
 .vscode/
 .idea/
 
+# --- SDD scratch (briefs, reports, review packages, progress ledger) ---
+.superpowers/
+
 # --- Node / Next.js / Vercel -------------------------------------------
 node_modules/
 .next/
